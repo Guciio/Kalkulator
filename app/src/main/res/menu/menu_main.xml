@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.gucio.kalkulator.Normal_Calculator">
+
+    <item
+        android:id="@+id/advance"
+        android:title="@string/advance" />
+    <item
+        android:id="@+id/normal"
+        android:title="@string/normal" />
+    <item
+        android:id="@+id/about"
+        android:title="@string/about"/>
+
+    <item android:id="@+id/exit"
+        android:title="@string/exit"/>
+
+
+</menu>
