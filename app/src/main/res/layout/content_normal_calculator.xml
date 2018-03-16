@@ -9,20 +9,6 @@
     tools:context="com.example.gucio.kalkulator.Normal_Calculator"
     tools:showIn="@layout/activity_normal_calculator">
 
-    <EditText
-        android:id="@+id/wynik"
-        android:layout_width="215dp"
-        android:layout_height="46dp"
-        android:layout_marginEnd="85dp"
-        android:layout_marginStart="84dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/btnC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="LabelFor" />
-
     <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="362dp"
@@ -202,5 +188,20 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/btnC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnC" />
+
+    <TextView
+        android:id="@+id/wynik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="119dp"
+        android:layout_marginEnd="163dp"
+        android:layout_marginStart="163dp"
+        android:layout_marginTop="120dp"
+        android:text=""
+        android:freezesText="true"
+        app:layout_constraintBottom_toTopOf="@+id/btnC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -8,19 +8,21 @@
     tools:context="com.example.gucio.kalkulator.Advance_Calculator"
     tools:showIn="@layout/activity_advance_calculator">
 
-    <EditText
+    <TextView
         android:id="@+id/wynik"
-        android:layout_width="215dp"
-        android:layout_height="46dp"
-        android:layout_marginEnd="85dp"
-        android:layout_marginStart="84dp"
-        android:ems="10"
-        android:inputType="textPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="119dp"
+        android:layout_marginEnd="163dp"
+        android:layout_marginStart="163dp"
+        android:layout_marginTop="120dp"
+        android:text=""
+        android:freezesText="true"
         app:layout_constraintBottom_toTopOf="@+id/btnC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="LabelFor" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TableLayout
         android:id="@+id/tableLayout"
