@@ -12,7 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class Advance_Calculator extends AppCompatActivity {
-    private Button zero,one,two,three,four,five,six,seven,eight,nine,dod,udejm,mnoz,dziel,usun,rowna,kropka,cofnij,plusMinus;
+    private Button zero,one,two,three,four,five,six,seven,eight,nine,dod,udejm,
+                   mnoz,dziel,usun,rowna,kropka,cofnij,plusMinus,sin,cos,tang,ln,sqrt,log,x2,xy;
     private TextView wynik;
 
     private double wartPierwsza;
@@ -45,6 +46,17 @@ public class Advance_Calculator extends AppCompatActivity {
         rowna = (Button) findViewById(R.id.btnRowna);
         cofnij = (Button) findViewById(R.id.btnBksp);
         plusMinus = (Button) findViewById(R.id.btnPlusMinus);
+
+        //Advance
+
+        sin = (Button) findViewById(R.id.btnSin);
+        cos = (Button) findViewById(R.id.btnCos);
+        tang = (Button) findViewById(R.id.btnTan);
+        ln= (Button) findViewById(R.id.btnIn);
+        sqrt = (Button) findViewById(R.id.btnSqrt);
+        log = (Button) findViewById(R.id.btnLog);
+        x2 = (Button) findViewById(R.id.btnX2);
+        xy = (Button) findViewById(R.id.btnXY);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
