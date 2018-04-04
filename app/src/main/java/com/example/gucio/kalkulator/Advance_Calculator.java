@@ -11,6 +11,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import static java.lang.Math.cos;
+import static java.lang.Math.log;
+import static java.lang.Math.log10;
+import static java.lang.Math.pow;
+import static java.lang.Math.sin;
+import static java.lang.Math.sqrt;
+import static java.lang.Math.tan;
+
 public class Advance_Calculator extends AppCompatActivity {
     private Button zero,one,two,three,four,five,six,seven,eight,nine,dod,udejm,
                    mnoz,dziel,usun,rowna,kropka,cofnij,plusMinus,sin,cos,tang,ln,sqrt,log,x2,xy;
@@ -280,6 +288,110 @@ public class Advance_Calculator extends AppCompatActivity {
 
             }
         });
+
+        xy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkWhichMathOperationAndDo();
+                if(!tekstOkienko.isEmpty()) {
+                    wartPierwsza = Double.parseDouble(tekstOkienko);
+                    idOdpowiedzi= 5;
+                    tekstOkienko = "";
+                }
+
+            }
+        });
+
+        x2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkWhichMathOperationAndDo();
+                if(!tekstOkienko.isEmpty()) {
+                    wartPierwsza = Double.parseDouble(tekstOkienko);
+                    odpowiedz = Pow(wartPierwsza);
+                    tekstOkienko = "";
+                    wynik.setText(odpowiedz);
+                }
+            }
+        });
+
+        sin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkWhichMathOperationAndDo();
+                if(!tekstOkienko.isEmpty()) {
+                    wartPierwsza = Double.parseDouble(tekstOkienko);
+                    odpowiedz = Sin(wartPierwsza);
+                    tekstOkienko = "";
+                    wynik.setText(odpowiedz);
+                }
+            }
+        });
+
+        cos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkWhichMathOperationAndDo();
+                if(!tekstOkienko.isEmpty()) {
+                    wartPierwsza = Double.parseDouble(tekstOkienko);
+                    odpowiedz = Cos(wartPierwsza);
+                    tekstOkienko = "";
+                    wynik.setText(odpowiedz);
+                }
+            }
+        });
+
+        sqrt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkWhichMathOperationAndDo();
+                if(!tekstOkienko.isEmpty()) {
+                    wartPierwsza = Double.parseDouble(tekstOkienko);
+                    odpowiedz = Sqrt(wartPierwsza);
+                    tekstOkienko = "";
+                    wynik.setText(odpowiedz);
+                }
+            }
+        });
+
+        log.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkWhichMathOperationAndDo();
+                if(!tekstOkienko.isEmpty()) {
+                    wartPierwsza = Double.parseDouble(tekstOkienko);
+                    odpowiedz = Log(wartPierwsza);
+                    tekstOkienko = "";
+                    wynik.setText(odpowiedz);
+                }
+            }
+        });
+
+        ln.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkWhichMathOperationAndDo();
+                if(!tekstOkienko.isEmpty()) {
+                    wartPierwsza = Double.parseDouble(tekstOkienko);
+                    odpowiedz = LN(wartPierwsza);
+                    tekstOkienko = "";
+                    wynik.setText(odpowiedz);
+                }
+            }
+        });
+
+        tang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkWhichMathOperationAndDo();
+                if(!tekstOkienko.isEmpty()) {
+                    wartPierwsza = Double.parseDouble(tekstOkienko);
+                    odpowiedz = Tan(wartPierwsza);
+                    tekstOkienko = "";
+                    wynik.setText(odpowiedz);
+                }
+            }
+        });
     }
 
     @Override
@@ -299,7 +411,17 @@ public class Advance_Calculator extends AppCompatActivity {
     private String Div(double x, double y){
         return String.valueOf(x / y);
     }
+    private String PowY(double x, double y){ return String.valueOf(pow(x, y));}
 
+    private String Pow(double x){return String.valueOf(x * x);}
+    private String Sqrt(double x){return String.valueOf(sqrt(x));}
+
+    private String Cos(double x){return String.valueOf(cos(x));}
+    private String Sin(double x){return String.valueOf(sin(x));}
+    private String Tan(double x){return String.valueOf(tan(x));}
+
+    private String LN(double x){return String.valueOf(log(x));}
+    private String Log(double x){return String.valueOf(log10(x));}
 
     private void checkWhichMathOperationAndDo(){
         if(idOdpowiedzi > 0 && !tekstOkienko.isEmpty())  {
@@ -331,9 +453,9 @@ public class Advance_Calculator extends AppCompatActivity {
             case 4:
                 if(wartPierwsza != 0)
                     return Div(wartPierwsza, wartDruga);
-                else
+            case 5:
+                return PowY(wartPierwsza, wartDruga);
 
-                    break;
         }
         return odpowiedz;
     }
