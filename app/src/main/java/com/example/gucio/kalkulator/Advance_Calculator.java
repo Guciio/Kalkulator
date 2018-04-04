@@ -80,68 +80,79 @@ public class Advance_Calculator extends AppCompatActivity {
     private void advanceCalculator()
     {
         zero.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
-            public void onClick(View view) {wynik.setText(wynik.getText() + "0");
+            public void onClick(View view) {
+                tekstOkienko = tekstOkienko + "0";
+                wynik.setText(tekstOkienko);
             }
         });
         one.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                wynik.setText(wynik.getText() + "1");
+
+                tekstOkienko = tekstOkienko + "1";
+                wynik.setText(tekstOkienko);
             }
         });
         two.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                wynik.setText(wynik.getText() + "2");
+
+                tekstOkienko = tekstOkienko + "2";
+                wynik.setText(tekstOkienko);
             }
         });
         three.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
-            public void onClick(View view) {wynik.setText(wynik.getText() + "3");
+            public void onClick(View view) {
+                tekstOkienko = tekstOkienko + "3";
+                wynik.setText(tekstOkienko);
             }
         });
         four.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
-            public void onClick(View view) {wynik.setText(wynik.getText() + "4");
+            public void onClick(View view) {
+                tekstOkienko = tekstOkienko + "4";
+                wynik.setText(tekstOkienko);
             }
         });
         five.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
-            public void onClick(View view) {wynik.setText(wynik.getText() + "5");
+            public void onClick(View view) {
+                tekstOkienko = tekstOkienko + "5";
+                wynik.setText(tekstOkienko);
             }
         });
         six.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                wynik.setText(wynik.getText() + "6");
+
+                tekstOkienko = tekstOkienko + "6";
+                wynik.setText(tekstOkienko);
             }
         });
         seven.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
-            public void onClick(View view) {wynik.setText(wynik.getText() + "7");
+            public void onClick(View view) {
+                tekstOkienko = tekstOkienko + "7";
+                wynik.setText(tekstOkienko);
             }
         });
         eight.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
-            public void onClick(View view) {wynik.setText(wynik.getText() + "8");
+            public void onClick(View view) {
+                tekstOkienko = tekstOkienko + "8";
+                wynik.setText(tekstOkienko);
             }
         });
         nine.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
-            public void onClick(View view) {wynik.setText(wynik.getText() + "9");
+            public void onClick(View view) {
+                tekstOkienko = tekstOkienko + "9";
+                wynik.setText(tekstOkienko);
             }
         });
+
         dod.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override

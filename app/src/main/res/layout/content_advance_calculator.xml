@@ -149,18 +149,19 @@
             tools:layout_editor_absoluteY="254dp" />
 
         <Button
+            android:id="@+id/btn2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/_2"
+            tools:ignore="ButtonStyle" />
+
+        <Button
             android:id="@+id/btnKrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/kropka"
             tools:ignore="ButtonStyle" />
 
-        <Button
-            android:id="@+id/btn2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/_2"
-            tools:ignore="ButtonStyle" />
     </LinearLayout>
 
 
@@ -190,6 +191,13 @@
                     tools:ignore="ButtonStyle" />
 
                 <Button
+                    android:id="@+id/btn6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/_6"
+                    tools:ignore="ButtonStyle" />
+
+                <Button
                     android:id="@+id/btn3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -201,13 +209,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/rowna"
-                    tools:ignore="ButtonStyle" />
-
-                <Button
-                    android:id="@+id/btn6"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/_6"
                     tools:ignore="ButtonStyle" />
 
             </LinearLayout>
