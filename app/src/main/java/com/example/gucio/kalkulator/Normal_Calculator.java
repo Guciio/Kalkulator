@@ -15,17 +15,17 @@ import android.widget.TextView;
 public class Normal_Calculator extends AppCompatActivity {
 
 
-    private Button zero,one,two,three,four,five,six,seven,eight,nine,dod,udejm,mnoz,dziel,usun,rowna,kropka;
+    private Button zero,one,two,three,four,five,six,seven,eight,nine,dod,udejm,mnoz,dziel,usun,rowna,kropka,cofnij,plusMinus;
     private TextView wynik;
 
     private double wartPierwsza;
     private double wartDruga;
 
-    String textInFiled = "";
-    String answer = "";
+    String tekstOkienko = "";
+    String odpowiedz = "";
 
-    protected int whichMathOperationID = 0;
-    int mathOperationAfterEqual = 0;
+    protected int idOdpowiedzi = 0;
+    int operacjaPoRowna = 0;
 
     void setupNormalCalculator(){
         zero = (Button) findViewById(R.id.btn0);
@@ -44,9 +44,10 @@ public class Normal_Calculator extends AppCompatActivity {
         dziel = (Button) findViewById(R.id.btnDziel);
         kropka = (Button) findViewById(R.id.btnKrop);
         wynik = (TextView) findViewById(R.id.wynik);
-        usun = (Button) findViewById(R.id.btnBksp);
+        usun = (Button) findViewById(R.id.btnC);
         rowna = (Button) findViewById(R.id.btnRowna);
-
+        cofnij = (Button) findViewById(R.id.btnBksp);
+        plusMinus = (Button) findViewById(R.id.btnPlusMinus);
     }
 
     @Override
@@ -172,10 +173,10 @@ public class Normal_Calculator extends AppCompatActivity {
             public void onClick(View view) {
                 checkWhichMathOperationAndDo();
 
-                if(!textInFiled.isEmpty()) {
-                    wartPierwsza = Double.parseDouble(textInFiled);
-                    whichMathOperationID = 1;
-                    textInFiled = "";
+                if(!tekstOkienko.isEmpty()) {
+                    wartPierwsza = Double.parseDouble(tekstOkienko);
+                    idOdpowiedzi = 1;
+                    tekstOkienko = "";
                 }
             }
 
@@ -185,11 +186,11 @@ public class Normal_Calculator extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkWhichMathOperationAndDo();
-                if(!textInFiled.isEmpty()) {
+                if(!tekstOkienko.isEmpty()) {
 
-                    wartPierwsza = Double.parseDouble(textInFiled);
-                    whichMathOperationID = 2;
-                    textInFiled = "";
+                    wartPierwsza = Double.parseDouble(tekstOkienko);
+                    idOdpowiedzi = 2;
+                    tekstOkienko = "";
                 }
             }
         });
@@ -198,11 +199,11 @@ public class Normal_Calculator extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkWhichMathOperationAndDo();
-                if(!textInFiled.isEmpty()) {
+                if(!tekstOkienko.isEmpty()) {
 
-                    wartPierwsza = Double.parseDouble(textInFiled);
-                    whichMathOperationID = 3;
-                    textInFiled = "";
+                    wartPierwsza = Double.parseDouble(tekstOkienko);
+                    idOdpowiedzi = 3;
+                    tekstOkienko = "";
                 }
             }
         });
@@ -211,45 +212,105 @@ public class Normal_Calculator extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkWhichMathOperationAndDo();
-                if(!textInFiled.isEmpty()) {
+                if(!tekstOkienko.isEmpty()) {
 
-                    wartPierwsza = Double.parseDouble(textInFiled);
-                    whichMathOperationID = 4;
-                    textInFiled = "";
+                    wartPierwsza = Double.parseDouble(tekstOkienko);
+                    idOdpowiedzi = 4;
+                    tekstOkienko = "";
                 }
             }
         });
         kropka.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
+            public void onClick(View view) {
+                String tmp = tekstOkienko + ".";
+                try {
+                    Double.parseDouble(tmp);
+                    tekstOkienko = tmp;
+
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+                if(tekstOkienko.isEmpty()) tekstOkienko ="0.";
+                wynik.setText(tekstOkienko);
+
+            }
+        });
+
+        usun.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {wynik.setText(wynik.getText() + ".");
+            public void onClick(View view) {
+                tekstOkienko = "";
+                odpowiedz = "";
+                wynik.setText(tekstOkienko);
+                idOdpowiedzi = 0;
+                operacjaPoRowna = 0;
+                wartPierwsza= 0;
+                wartDruga = 0;
+            }
+        });
+
+        cofnij.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!tekstOkienko.isEmpty()) {
+                    tekstOkienko = tekstOkienko.substring(0, tekstOkienko.length() - 1);
+                    wynik.setText(tekstOkienko);
+                }
+            }
+        });
+
+        cofnij.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                tekstOkienko = "";
+                wynik.setText(tekstOkienko);
+                return true;
             }
         });
 
         rowna.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!textInFiled.isEmpty() && whichMathOperationID == 0){
-                    answer = "";
+                if(!tekstOkienko.isEmpty() && idOdpowiedzi == 0){
+                    odpowiedz = "";
                     wartPierwsza = 0;
                     wartDruga = 0;
-                    mathOperationAfterEqual = 0;
+                    operacjaPoRowna = 0;
                 }
 
-                if(whichMathOperationID != 0)
-                    mathOperationAfterEqual = whichMathOperationID;
+                if(idOdpowiedzi != 0)
+                    operacjaPoRowna = idOdpowiedzi;
 
-                if (!textInFiled.isEmpty() && whichMathOperationID != 0 ) {
-                    wartDruga = Double.parseDouble(textInFiled);
-                    textInFiled = "";
+                if (!tekstOkienko.isEmpty() && idOdpowiedzi != 0 ) {
+                    wartDruga = Double.parseDouble(tekstOkienko);
+                    tekstOkienko = "";
                 }
 
-                if(mathOperationAfterEqual != 0) {
-                    answer = doMathOperation(mathOperationAfterEqual);
-                    wynik.setText(answer);
-                    wartPierwsza = Double.parseDouble(answer);
-                    whichMathOperationID = 0;
+                if(operacjaPoRowna != 0) {
+                    odpowiedz = doMathOperation(operacjaPoRowna);
+                    wynik.setText(odpowiedz);
+                    wartPierwsza = Double.parseDouble(odpowiedz);
+                    idOdpowiedzi = 0;
                 }
+            }
+        });
+
+        plusMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!tekstOkienko.isEmpty()){
+                    Double d = Double.parseDouble(tekstOkienko);
+                    if(d != 0) tekstOkienko = String.valueOf(d * -1);
+                    wynik.setText(tekstOkienko);
+                }
+
+                else if(!odpowiedz.isEmpty()){
+                    wartPierwsza=wartPierwsza * -1;
+                    Double d = Double.parseDouble(odpowiedz);
+                    if(d != 0) odpowiedz = String.valueOf(d * -1);
+                    wynik.setText(odpowiedz);
+                }
+
             }
         });
     }
@@ -274,19 +335,19 @@ public class Normal_Calculator extends AppCompatActivity {
 
 
     private void checkWhichMathOperationAndDo(){
-        if(whichMathOperationID > 0 && !textInFiled.isEmpty())  {
-            wartDruga = Double.parseDouble(textInFiled);
+        if(idOdpowiedzi > 0 && !tekstOkienko.isEmpty())  {
+            wartDruga = Double.parseDouble(tekstOkienko);
 
-            answer = doMathOperation(whichMathOperationID);
-            textInFiled = answer;
-            answer ="";
-            wynik.setText(textInFiled);
+            odpowiedz = doMathOperation(idOdpowiedzi);
+            tekstOkienko = odpowiedz;
+            odpowiedz ="";
+            wynik.setText(tekstOkienko);
         }
 
-        if(textInFiled.isEmpty() && !answer.isEmpty()) {
-            textInFiled = answer;
-            answer ="";
-            wartDruga = Double.parseDouble(textInFiled);
+        if(tekstOkienko.isEmpty() && !odpowiedz.isEmpty()) {
+            tekstOkienko = odpowiedz;
+            odpowiedz ="";
+            wartDruga = Double.parseDouble(tekstOkienko);
         }
     }
 
@@ -307,7 +368,7 @@ public class Normal_Calculator extends AppCompatActivity {
 
                     break;
         }
-        return answer;
+        return odpowiedz;
     }
 
 
