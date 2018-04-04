@@ -11,8 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 public class Normal_Calculator extends AppCompatActivity {
 
@@ -23,9 +21,11 @@ public class Normal_Calculator extends AppCompatActivity {
     private double wartPierwsza;
     private double wartDruga;
 
-    private boolean dodawanie ,odejmowanie,mnozenie ,dzielenie ;
+    String textInFiled = "";
+    String answer = "";
 
-
+    protected int whichMathOperationID = 0;
+    int mathOperationAfterEqual = 0;
 
     void setupNormalCalculator(){
         zero = (Button) findViewById(R.id.btn0);
@@ -132,7 +132,7 @@ public class Normal_Calculator extends AppCompatActivity {
         four.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
-            public void onClick(View view) {                wynik.setText(wynik.getText() + "4");
+            public void onClick(View view) {wynik.setText(wynik.getText() + "4");
             }
         });
         five.setOnClickListener(new View.OnClickListener() {
@@ -170,36 +170,53 @@ public class Normal_Calculator extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                wartPierwsza = Double.parseDouble(wynik.getText()+"");
-                dodawanie = true;
-                wynik.setText(null);
+                checkWhichMathOperationAndDo();
+
+                if(!textInFiled.isEmpty()) {
+                    wartPierwsza = Double.parseDouble(textInFiled);
+                    whichMathOperationID = 1;
+                    textInFiled = "";
+                }
             }
+
         });
         udejm.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                wartPierwsza = Double.parseDouble(wynik.getText()+"");
-                odejmowanie = true;
-                wynik.setText(null);
+                checkWhichMathOperationAndDo();
+                if(!textInFiled.isEmpty()) {
+
+                    wartPierwsza = Double.parseDouble(textInFiled);
+                    whichMathOperationID = 2;
+                    textInFiled = "";
+                }
             }
         });
         mnoz.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                wartPierwsza = Double.parseDouble(wynik.getText()+"");
-                mnozenie = true;
-                wynik.setText(null);
+                checkWhichMathOperationAndDo();
+                if(!textInFiled.isEmpty()) {
+
+                    wartPierwsza = Double.parseDouble(textInFiled);
+                    whichMathOperationID = 3;
+                    textInFiled = "";
+                }
             }
         });
         dziel.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                wartPierwsza = Double.parseDouble(wynik.getText()+"");
-                dzielenie = true;
-                wynik.setText(null);
+                checkWhichMathOperationAndDo();
+                if(!textInFiled.isEmpty()) {
+
+                    wartPierwsza = Double.parseDouble(textInFiled);
+                    whichMathOperationID = 4;
+                    textInFiled = "";
+                }
             }
         });
         kropka.setOnClickListener(new View.OnClickListener() {
@@ -210,36 +227,88 @@ public class Normal_Calculator extends AppCompatActivity {
         });
 
         rowna.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
+                if(!textInFiled.isEmpty() && whichMathOperationID == 0){
+                    answer = "";
+                    wartPierwsza = 0;
+                    wartDruga = 0;
+                    mathOperationAfterEqual = 0;
+                }
 
-                wartDruga = Double.parseDouble(wynik.getText()+"");
+                if(whichMathOperationID != 0)
+                    mathOperationAfterEqual = whichMathOperationID;
 
-                if(dodawanie){
-                    wynik.setText(wartPierwsza+wartPierwsza+"");
-                    dodawanie=false;
+                if (!textInFiled.isEmpty() && whichMathOperationID != 0 ) {
+                    wartDruga = Double.parseDouble(textInFiled);
+                    textInFiled = "";
                 }
-                if(odejmowanie){
-                    wynik.setText(wartPierwsza-wartPierwsza+"");
-                    odejmowanie=false;
+
+                if(mathOperationAfterEqual != 0) {
+                    answer = doMathOperation(mathOperationAfterEqual);
+                    wynik.setText(answer);
+                    wartPierwsza = Double.parseDouble(answer);
+                    whichMathOperationID = 0;
                 }
-                if(mnozenie){
-                    wynik.setText(wartPierwsza * wartPierwsza+"");
-                    mnozenie=false;
-                }
-                if(dzielenie){
-                    wynik.setText(wartPierwsza / wartPierwsza+"");
-                    dzielenie=false;
-                }
-            }
-        });
-        usun.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View view) {wynik.setText("");
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
+    private String Add(double x, double y){
+        return String.valueOf(x + y);
+    }
+    private String Sub(double x, double y){
+        return String.valueOf(x - y);
+    }
+    private String Multi(double x, double y){
+        return String.valueOf(x * y);
+    }
+    private String Div(double x, double y){
+        return String.valueOf(x / y);
+    }
+
+
+    private void checkWhichMathOperationAndDo(){
+        if(whichMathOperationID > 0 && !textInFiled.isEmpty())  {
+            wartDruga = Double.parseDouble(textInFiled);
+
+            answer = doMathOperation(whichMathOperationID);
+            textInFiled = answer;
+            answer ="";
+            wynik.setText(textInFiled);
+        }
+
+        if(textInFiled.isEmpty() && !answer.isEmpty()) {
+            textInFiled = answer;
+            answer ="";
+            wartDruga = Double.parseDouble(textInFiled);
+        }
+    }
+
+    private String doMathOperation(int whichOperation){
+        switch (whichOperation) {
+            case 0:
+                break;
+            case 1:
+                return Add(wartPierwsza, wartDruga);
+            case 2:
+                return Sub(wartPierwsza, wartDruga);
+            case 3:
+                return Multi(wartPierwsza, wartDruga);
+            case 4:
+                if(wartPierwsza != 0)
+                    return Div(wartPierwsza, wartDruga);
+                else
+
+                    break;
+        }
+        return answer;
+    }
+
 
 }
