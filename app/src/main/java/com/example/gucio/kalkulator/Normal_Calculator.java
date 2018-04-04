@@ -28,26 +28,26 @@ public class Normal_Calculator extends AppCompatActivity {
     int operacjaPoRowna = 0;
 
     void setupNormalCalculator(){
-        zero = (Button) findViewById(R.id.btn0);
-        one =(Button) findViewById(R.id.btn1);
-        two = (Button) findViewById(R.id.btn2);
-        three = (Button) findViewById(R.id.btn3);
-        four = (Button) findViewById(R.id.btn4);
-        five = (Button) findViewById(R.id.btn5);
-        six = (Button) findViewById(R.id.btn6);
-        seven = (Button) findViewById(R.id.btn7);
-        eight = (Button) findViewById(R.id.btn8);
-        nine = (Button) findViewById(R.id.btn9);
-        dod = (Button) findViewById(R.id.btnDod);
-        udejm = (Button) findViewById(R.id.btnMinus);
-        mnoz = (Button) findViewById(R.id.btnMnoz);
-        dziel = (Button) findViewById(R.id.btnDziel);
-        kropka = (Button) findViewById(R.id.btnKrop);
-        wynik = (TextView) findViewById(R.id.wynik);
-        usun = (Button) findViewById(R.id.btnC);
-        rowna = (Button) findViewById(R.id.btnRowna);
-        cofnij = (Button) findViewById(R.id.btnBksp);
-        plusMinus = (Button) findViewById(R.id.btnPlusMinus);
+        zero = findViewById(R.id.btn0);
+        one =findViewById(R.id.btn1);
+        two = findViewById(R.id.btn2);
+        three = findViewById(R.id.btn3);
+        four = findViewById(R.id.btn4);
+        five = findViewById(R.id.btn5);
+        six = findViewById(R.id.btn6);
+        seven = findViewById(R.id.btn7);
+        eight = findViewById(R.id.btn8);
+        nine = findViewById(R.id.btn9);
+        dod = findViewById(R.id.btnDod);
+        udejm = findViewById(R.id.btnMinus);
+        mnoz = findViewById(R.id.btnMnoz);
+        dziel = findViewById(R.id.btnDziel);
+        kropka = findViewById(R.id.btnKrop);
+        wynik = findViewById(R.id.wynik);
+        usun = findViewById(R.id.btnC);
+        rowna = findViewById(R.id.btnRowna);
+        cofnij = findViewById(R.id.btnBksp);
+        plusMinus = findViewById(R.id.btnPlusMinus);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class Normal_Calculator extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_normal_calculator);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setupNormalCalculator();
         normalCalculator();
@@ -89,7 +89,7 @@ public class Normal_Calculator extends AppCompatActivity {
         }
         if(id == R.id.about){
             setContentView(R.layout.content_about);
-            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             return true;
         }
