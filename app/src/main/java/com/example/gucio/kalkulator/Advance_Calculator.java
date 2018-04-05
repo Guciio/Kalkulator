@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import static java.lang.Math.cos;
 import static java.lang.Math.log;
@@ -21,7 +22,7 @@ import static java.lang.Math.tan;
 
 public class Advance_Calculator extends AppCompatActivity {
     private Button zero,one,two,three,four,five,six,seven,eight,nine,dod,udejm,
-                   mnoz,dziel,usun,rowna,kropka,cofnij,plusMinus,sin,cos,tang,ln,sqrt,log,x2,xy;
+                   mnoz,dziel,usun,rowna,kropka,cofnij,plusMinus,sin,cos,tang,ln,sqrt,log,x2,xy,proc;
     private TextView wynik;
 
     private double wartPierwsza;
@@ -65,6 +66,7 @@ public class Advance_Calculator extends AppCompatActivity {
         log =  findViewById(R.id.btnLog);
         x2 =  findViewById(R.id.btnX2);
         xy =  findViewById(R.id.btnXY);
+        proc = findViewById(R.id.proc);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -403,6 +405,24 @@ public class Advance_Calculator extends AppCompatActivity {
                 }
             }
         });
+
+        proc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(idOdpowiedzi == 0 && !tekstOkienko.isEmpty()) {
+                    odpowiedz = "0.0";
+                    tekstOkienko = "";
+                    wynik.setText(odpowiedz);
+                }
+                else if(!tekstOkienko.isEmpty()){
+                    wartDruga = Double.parseDouble(tekstOkienko);
+                    wartDruga = wartPierwsza * (wartDruga / 100);
+                    odpowiedz = doMathOperation(idOdpowiedzi);
+                    tekstOkienko = "";
+                    wynik.setText(odpowiedz);
+                }
+            }
+        });
     }
 
     @Override
@@ -462,8 +482,14 @@ public class Advance_Calculator extends AppCompatActivity {
             case 3:
                 return Multi(wartPierwsza, wartDruga);
             case 4:
-                if(wartPierwsza != 0)
+                if(wartDruga != 0)
                     return Div(wartPierwsza, wartDruga);
+                else {
+                    Toast.makeText(Advance_Calculator.this, "No co TY ! Nie dziel przez zero !", Toast.LENGTH_LONG).show();
+                    wartPierwsza = 0;
+                    wartDruga = 0;
+                    return odpowiedz ="0";
+                }
             case 5:
                 return PowY(wartPierwsza, wartDruga);
 

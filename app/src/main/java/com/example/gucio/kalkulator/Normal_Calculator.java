@@ -10,6 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Objects;
 
 
 public class Normal_Calculator extends AppCompatActivity {
@@ -60,46 +63,6 @@ public class Normal_Calculator extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setupNormalCalculator();
         normalCalculator();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-
-        if(id == R.id.normal){
-            Intent i = new Intent(getApplicationContext(), Normal_Calculator.class);
-            startActivity(i);
-            return true;
-        }
-        if (id == R.id.advance) {
-            Intent i = new Intent(getApplicationContext(), Advance_Calculator.class);
-            startActivity(i);
-            return true;
-        }
-        if(id == R.id.about){
-            setContentView(R.layout.content_about);
-            Toolbar toolbar = findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-            return true;
-        }
-        if(id == R.id.exit){
-            finish();
-            return false;
-        }
-
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void normalCalculator(){
@@ -303,6 +266,7 @@ public class Normal_Calculator extends AppCompatActivity {
                     wartPierwsza = Double.parseDouble(odpowiedz);
                     idOdpowiedzi = 0;
                 }
+
             }
         });
 
@@ -345,6 +309,8 @@ public class Normal_Calculator extends AppCompatActivity {
     }
 
 
+
+
     private void checkWhichMathOperationAndDo(){
         if(idOdpowiedzi > 0 && !tekstOkienko.isEmpty())  {
             wartDruga = Double.parseDouble(tekstOkienko);
@@ -373,14 +339,56 @@ public class Normal_Calculator extends AppCompatActivity {
             case 3:
                 return Multi(wartPierwsza, wartDruga);
             case 4:
-                if(wartPierwsza != 0)
+                if(wartDruga != 0)
                     return Div(wartPierwsza, wartDruga);
-                else
-
-                    break;
+                else {
+                    Toast.makeText(Normal_Calculator.this, "No co TY ! Nie dziel przez zero !", Toast.LENGTH_LONG).show();
+                    wartPierwsza = 0;
+                    wartDruga = 0;
+                    return odpowiedz ="0";
+                }
         }
         return odpowiedz;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+
+        if(id == R.id.normal){
+            Intent i = new Intent(getApplicationContext(), Normal_Calculator.class);
+            startActivity(i);
+            return true;
+        }
+        if (id == R.id.advance) {
+            Intent i = new Intent(getApplicationContext(), Advance_Calculator.class);
+            startActivity(i);
+            return true;
+        }
+        if(id == R.id.about){
+            setContentView(R.layout.content_about);
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            return true;
+        }
+        if(id == R.id.exit){
+            finish();
+            return false;
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
 
 }
