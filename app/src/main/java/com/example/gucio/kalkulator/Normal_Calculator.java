@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Objects;
 
@@ -326,12 +327,12 @@ public class Normal_Calculator extends AppCompatActivity {
             case 3:
                 return String.valueOf(wartPierwsza.multiply(wartDruga));
             case 4:
-                if(!wartDruga.equals(0) )
-                    return String.valueOf(wartPierwsza.divide(wartDruga));
+                if(!wartDruga.equals(new BigDecimal(0)) )
+                    return String.valueOf(wartPierwsza.divide(wartDruga,RoundingMode.DOWN));
                 else {
                     Toast.makeText(Normal_Calculator.this, "No co TY ! Nie dziel przez zero !", Toast.LENGTH_LONG).show();
-                    wartPierwsza.equals(0);
-                    wartDruga.equals(0);
+                    wartPierwsza = new BigDecimal(0);
+                    wartDruga = new BigDecimal(0);
                     return odpowiedz ="0";
                 }
         }
