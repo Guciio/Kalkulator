@@ -278,14 +278,14 @@ public class Normal_Calculator extends AppCompatActivity {
             public void onClick(View view) {
                 if(!tekstOkienko.isEmpty()){
                     BigDecimal d = new BigDecimal(tekstOkienko);
-                    if(!d.equals(0)) tekstOkienko = String.valueOf(d.multiply(BigDecimal.valueOf(-1)));
+                    if(!d.equals(new BigDecimal(0))) tekstOkienko = String.valueOf(d.multiply(BigDecimal.valueOf(-1)));
                     wynik.setText(tekstOkienko);
                 }
 
                 else if(!odpowiedz.isEmpty()){
                     wartPierwsza= new BigDecimal(-1).multiply(wartPierwsza);
                     BigDecimal d = new BigDecimal(odpowiedz);
-                    if(!d.equals(0) ) odpowiedz = String.valueOf(d.multiply(BigDecimal.valueOf(-1)));
+                    if(!d.equals(new BigDecimal(0)) ) odpowiedz = String.valueOf(d.multiply(BigDecimal.valueOf(-1)));
                     wynik.setText(odpowiedz);
                 }
 
