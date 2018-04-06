@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 
@@ -21,8 +23,8 @@ public class Normal_Calculator extends AppCompatActivity {
     private Button zero,one,two,three,four,five,six,seven,eight,nine,dod,udejm,mnoz,dziel,usun,rowna,kropka,cofnij,plusMinus;
     private TextView wynik;
 
-    private double wartPierwsza;
-    private double wartDruga;
+    private BigDecimal wartPierwsza;
+    private BigDecimal wartDruga;
 
     String tekstOkienko = "";
     String odpowiedz = "";
@@ -148,7 +150,7 @@ public class Normal_Calculator extends AppCompatActivity {
                 checkWhichMathOperationAndDo();
 
                 if(!tekstOkienko.isEmpty()) {
-                    wartPierwsza = Double.parseDouble(tekstOkienko);
+                    wartPierwsza = new BigDecimal(tekstOkienko);
                     idOdpowiedzi = 1;
                     tekstOkienko = "";
                 }
@@ -162,7 +164,7 @@ public class Normal_Calculator extends AppCompatActivity {
                 checkWhichMathOperationAndDo();
                 if(!tekstOkienko.isEmpty()) {
 
-                    wartPierwsza = Double.parseDouble(tekstOkienko);
+                    wartPierwsza = new BigDecimal(tekstOkienko);
                     idOdpowiedzi = 2;
                     tekstOkienko = "";
                 }
@@ -175,7 +177,7 @@ public class Normal_Calculator extends AppCompatActivity {
                 checkWhichMathOperationAndDo();
                 if(!tekstOkienko.isEmpty()) {
 
-                    wartPierwsza = Double.parseDouble(tekstOkienko);
+                    wartPierwsza = new BigDecimal(tekstOkienko);
                     idOdpowiedzi = 3;
                     tekstOkienko = "";
                 }
@@ -188,7 +190,7 @@ public class Normal_Calculator extends AppCompatActivity {
                 checkWhichMathOperationAndDo();
                 if(!tekstOkienko.isEmpty()) {
 
-                    wartPierwsza = Double.parseDouble(tekstOkienko);
+                    wartPierwsza = new BigDecimal(tekstOkienko);
                     idOdpowiedzi = 4;
                     tekstOkienko = "";
                 }
@@ -218,8 +220,8 @@ public class Normal_Calculator extends AppCompatActivity {
                 wynik.setText(tekstOkienko);
                 idOdpowiedzi = 0;
                 operacjaPoRowna = 0;
-                wartPierwsza= 0;
-                wartDruga = 0;
+                wartPierwsza = new BigDecimal(0);
+                wartDruga = new BigDecimal(0);
             }
         });
 
@@ -247,8 +249,8 @@ public class Normal_Calculator extends AppCompatActivity {
             public void onClick(View view) {
                 if(!tekstOkienko.isEmpty() && idOdpowiedzi == 0){
                     odpowiedz = "";
-                    wartPierwsza = 0;
-                    wartDruga = 0;
+                    wartPierwsza = new BigDecimal(0);
+                    wartDruga = new BigDecimal(0);
                     operacjaPoRowna = 0;
                 }
 
@@ -256,14 +258,14 @@ public class Normal_Calculator extends AppCompatActivity {
                     operacjaPoRowna = idOdpowiedzi;
 
                 if (!tekstOkienko.isEmpty() && idOdpowiedzi != 0 ) {
-                    wartDruga = Double.parseDouble(tekstOkienko);
+                    wartDruga = new BigDecimal(tekstOkienko);
                     tekstOkienko = "";
                 }
 
                 if(operacjaPoRowna != 0) {
                     odpowiedz = doMathOperation(operacjaPoRowna);
                     wynik.setText(odpowiedz);
-                    wartPierwsza = Double.parseDouble(odpowiedz);
+                    wartPierwsza = new BigDecimal(odpowiedz);
                     idOdpowiedzi = 0;
                 }
 
@@ -274,15 +276,15 @@ public class Normal_Calculator extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!tekstOkienko.isEmpty()){
-                    Double d = Double.parseDouble(tekstOkienko);
-                    if(d != 0) tekstOkienko = String.valueOf(d * -1);
+                    BigDecimal d = new BigDecimal(tekstOkienko);
+                    if(!d.equals(0)) tekstOkienko = String.valueOf(d.multiply(BigDecimal.valueOf(-1)));
                     wynik.setText(tekstOkienko);
                 }
 
                 else if(!odpowiedz.isEmpty()){
-                    wartPierwsza=wartPierwsza * -1;
-                    Double d = Double.parseDouble(odpowiedz);
-                    if(d != 0) odpowiedz = String.valueOf(d * -1);
+                    wartPierwsza= new BigDecimal(-1).multiply(wartPierwsza);
+                    BigDecimal d = new BigDecimal(odpowiedz);
+                    if(!d.equals(0) ) odpowiedz = String.valueOf(d.multiply(BigDecimal.valueOf(-1)));
                     wynik.setText(odpowiedz);
                 }
 
@@ -295,25 +297,10 @@ public class Normal_Calculator extends AppCompatActivity {
         finish();
     }
 
-    private String Add(double x, double y){
-        return String.valueOf(x + y);
-    }
-    private String Sub(double x, double y){
-        return String.valueOf(x - y);
-    }
-    private String Multi(double x, double y){
-        return String.valueOf(x * y);
-    }
-    private String Div(double x, double y){
-        return String.valueOf(x / y);
-    }
-
-
-
 
     private void checkWhichMathOperationAndDo(){
         if(idOdpowiedzi > 0 && !tekstOkienko.isEmpty())  {
-            wartDruga = Double.parseDouble(tekstOkienko);
+            wartDruga = new BigDecimal(tekstOkienko);
 
             odpowiedz = doMathOperation(idOdpowiedzi);
             tekstOkienko = odpowiedz;
@@ -324,7 +311,7 @@ public class Normal_Calculator extends AppCompatActivity {
         if(tekstOkienko.isEmpty() && !odpowiedz.isEmpty()) {
             tekstOkienko = odpowiedz;
             odpowiedz ="";
-            wartDruga = Double.parseDouble(tekstOkienko);
+            wartDruga = new BigDecimal(tekstOkienko);
         }
     }
 
@@ -333,18 +320,18 @@ public class Normal_Calculator extends AppCompatActivity {
             case 0:
                 break;
             case 1:
-                return Add(wartPierwsza, wartDruga);
+                return String.valueOf(wartPierwsza.add(wartDruga));
             case 2:
-                return Sub(wartPierwsza, wartDruga);
+                return String.valueOf(wartPierwsza.subtract(wartDruga));
             case 3:
-                return Multi(wartPierwsza, wartDruga);
+                return String.valueOf(wartPierwsza.multiply(wartDruga));
             case 4:
-                if(wartDruga != 0)
-                    return Div(wartPierwsza, wartDruga);
+                if(!wartDruga.equals(0) )
+                    return String.valueOf(wartPierwsza.divide(wartDruga));
                 else {
                     Toast.makeText(Normal_Calculator.this, "No co TY ! Nie dziel przez zero !", Toast.LENGTH_LONG).show();
-                    wartPierwsza = 0;
-                    wartDruga = 0;
+                    wartPierwsza.equals(0);
+                    wartDruga.equals(0);
                     return odpowiedz ="0";
                 }
         }
