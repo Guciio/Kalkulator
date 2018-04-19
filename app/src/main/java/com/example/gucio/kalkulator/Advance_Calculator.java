@@ -1,10 +1,7 @@
 package com.example.gucio.kalkulator;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,15 +20,6 @@ import static java.lang.Math.tan;
 public class Advance_Calculator extends Normal_Calculator {
 
     private Button sin,cos,tang,ln,sqrt,log,x2,xy,proc;
-    private TextView wynik;
-
-    private BigDecimal wartPierwsza;
-    private BigDecimal wartDruga;
-
-    String tekstOkienko = "";
-    String odpowiedz = "";
-
-    protected int idOdpowiedzi = 0;
 
     void setupAdvanceCalculator(){
         //Advance
@@ -57,13 +45,12 @@ public class Advance_Calculator extends Normal_Calculator {
         super.setupNormalCalculator();
         super.normalCalculator();
 
-        advanceCalculator();
-        setupAdvanceCalculator();
-
+        this.setupAdvanceCalculator();
+        this.advanceCalculator();
 
     }
 
-    private void advanceCalculator()
+    public void advanceCalculator()
     {
 
         xy.setOnClickListener(new View.OnClickListener() {
@@ -189,12 +176,6 @@ public class Advance_Calculator extends Normal_Calculator {
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        finish();
-    }
-
-
     private String Sqrt(double x){return String.valueOf(sqrt(x));}
 
     private String Cos(double x){return String.valueOf(cos(x));}
@@ -203,23 +184,6 @@ public class Advance_Calculator extends Normal_Calculator {
 
     private String LN(double x){return String.valueOf(log(x));}
     private String Log(double x){return String.valueOf(log10(x));}
-
-    private void checkWhichMathOperationAndDo(){
-        if(idOdpowiedzi > 0 && !tekstOkienko.isEmpty())  {
-            wartDruga = new BigDecimal(tekstOkienko);
-
-            odpowiedz = doMathOperation(idOdpowiedzi);
-            tekstOkienko = odpowiedz;
-            odpowiedz ="";
-            wynik.setText(tekstOkienko);
-        }
-
-        if(tekstOkienko.isEmpty() && !odpowiedz.isEmpty()) {
-            tekstOkienko = odpowiedz;
-            odpowiedz ="";
-            wartDruga = new BigDecimal(tekstOkienko);
-        }
-    }
 
     private String doMathOperation(int whichOperation){
         switch (whichOperation) {
@@ -247,42 +211,4 @@ public class Advance_Calculator extends Normal_Calculator {
         return odpowiedz;
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-
-        if (id == R.id.advance) {
-            Intent i = new Intent(getApplicationContext(), Advance_Calculator.class);
-            startActivity(i);
-            return true;
-        }
-        if (id == R.id.normal) {
-            Intent i = new Intent(getApplicationContext(), Normal_Calculator.class);
-            startActivity(i);
-            return true;
-        }
-        if(id == R.id.about){
-            setContentView(R.layout.content_about);
-            Toolbar toolbar = findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-            return true;
-        }
-        if(id == R.id.exit){
-            finish();
-            return false;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

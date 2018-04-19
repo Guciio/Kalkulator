@@ -19,15 +19,15 @@ public class Normal_Calculator extends AppCompatActivity {
 
 
     private Button zero,one,two,three,four,five,six,seven,eight,nine,dod,udejm,mnoz,dziel,usun,rowna,kropka,cofnij,plusMinus;
-    private TextView wynik;
+    public TextView wynik;
 
-    private BigDecimal wartPierwsza;
-    private BigDecimal wartDruga;
+    public BigDecimal wartPierwsza;
+    public BigDecimal wartDruga;
 
     String tekstOkienko = "";
     String odpowiedz = "";
 
-    protected int idOdpowiedzi = 0;
+    public int idOdpowiedzi = 0;
     int operacjaPoRowna = 0;
 
     void setupNormalCalculator(){
@@ -297,7 +297,7 @@ public class Normal_Calculator extends AppCompatActivity {
     }
 
 
-    private void checkWhichMathOperationAndDo(){
+    public void checkWhichMathOperationAndDo(){
         if(idOdpowiedzi > 0 && !tekstOkienko.isEmpty())  {
             wartDruga = new BigDecimal(tekstOkienko);
 
