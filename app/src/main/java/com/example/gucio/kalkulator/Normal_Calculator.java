@@ -1,6 +1,5 @@
 package com.example.gucio.kalkulator;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,8 +13,6 @@ import android.widget.Toast;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.util.Objects;
 
 
 public class Normal_Calculator extends AppCompatActivity {
@@ -60,12 +57,18 @@ public class Normal_Calculator extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_normal_calculator);
+        setContentView(getLayoutId());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         setupNormalCalculator();
         normalCalculator();
+    }
+
+    protected int getLayoutId()
+    {
+        return R.layout.activity_normal_calculator;
     }
 
     public void normalCalculator(){
@@ -145,7 +148,7 @@ public class Normal_Calculator extends AppCompatActivity {
         });
 
         dod.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
+
             @Override
             public void onClick(View view) {
                 checkWhichMathOperationAndDo();
@@ -159,7 +162,7 @@ public class Normal_Calculator extends AppCompatActivity {
 
         });
         udejm.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
+
             @Override
             public void onClick(View view) {
                 checkWhichMathOperationAndDo();
@@ -172,7 +175,7 @@ public class Normal_Calculator extends AppCompatActivity {
             }
         });
         mnoz.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
+
             @Override
             public void onClick(View view) {
                 checkWhichMathOperationAndDo();
@@ -185,7 +188,7 @@ public class Normal_Calculator extends AppCompatActivity {
             }
         });
         dziel.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
+
             @Override
             public void onClick(View view) {
                 checkWhichMathOperationAndDo();
