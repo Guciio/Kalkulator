@@ -50,22 +50,17 @@ public class Advance_Calculator extends Normal_Calculator {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
+        setContentView(R.layout.activity_advance_calculator);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         super.setupNormalCalculator();
         super.normalCalculator();
 
-        setupAdvanceCalculator();
         advanceCalculator();
+        setupAdvanceCalculator();
 
-    }
 
-    @Override
-    protected int getLayoutId()
-    {
-        return R.layout.activity_advance_calculator;
     }
 
     private void advanceCalculator()

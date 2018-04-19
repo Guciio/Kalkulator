@@ -57,18 +57,13 @@ public class Normal_Calculator extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
+        setContentView(R.layout.activity_normal_calculator);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         setupNormalCalculator();
         normalCalculator();
-    }
-
-    protected int getLayoutId()
-    {
-        return R.layout.activity_normal_calculator;
     }
 
     public void normalCalculator(){
